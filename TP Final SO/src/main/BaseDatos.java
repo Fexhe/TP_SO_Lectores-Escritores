@@ -1,12 +1,14 @@
 package main;
 
-public class GestorBDJusto {
-
+public class BaseDatos {
+	
+	private int dato=0;
 	private int nLectores=0;
-	private boolean hayEscritor=false;
 	private int nEscritor=0;
+	private boolean hayEscritor=false;
+	
 
-	public synchronized void openL(int id) throws InterruptedException{
+	public void openL(int id) throws InterruptedException{
 		while(hayEscritor || nEscritor>0){
 			wait();
 		}
@@ -14,7 +16,7 @@ public class GestorBDJusto {
 		System.out.println("Lector"+id+"entra en la BD");
 	}
 	
-	public synchronized void closeL(int id){
+	public void closeL(int id){
 		System.out.println("Lector"+id + "sale de la BD");
 		nLectores--;
 		if (nLectores==0) notifyAll();

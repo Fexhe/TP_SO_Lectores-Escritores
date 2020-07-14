@@ -3,13 +3,16 @@ package main;
 import java.util.*;
 public class Escritor extends Thread {
 
-	private static Random r=new Random();
-	private GestorBDJusto gestor; // hacer clase GestorBD
+	private BaseDatos bD;
+	private int tiempoEscritura;
+	private int tiempoSleep; 
 	private int id;
 
-	public Escritor(GestorBDJusto gestor, int id){
-		this.gestor=gestor;
+	public Escritor(BaseDatos bD, int id, int tiempoEscritura, int tiempoSleep){
+		this.bD=bD;
 		this.id=id;
+		this.tiempoEscritura=tiempoEscritura;
+		this.tiempoSleep=tiempoSleep;
 
 	}
 
@@ -18,13 +21,13 @@ public void run() {
 
 	while (true){
 		try {
-			gestor.openE(id);
+			bD.openE(id);
 			//escribiendo en BD
-			Thread.sleep(r.nextInt(200));
-			gestor.closeE(id);
-			Thread.sleep(r.nextInt(300));
+			Thread.sleep(tiempoEscritura);
+			bD.closeE(id);
+			Thread.sleep(tiempoSleep);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} 
 	}

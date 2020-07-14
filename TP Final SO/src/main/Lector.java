@@ -3,13 +3,16 @@ package main;
 import java.util.*;
 public class Lector extends Thread{
 
-private static Random r=new Random();
-private GestorBDJusto gestor; // hacer clase GestorBD
-private int id;
+	private BaseDatos bD; // hacer clase GestorBD
+	private int id;
+	private int tiempoLectura;
+	private int tiempoSleep;
 
-public Lector(GestorBDJusto gestor, int id){
-	this.gestor=gestor;
+public Lector(BaseDatos bD, int id, int timepoLectura, int tiempoSleep){
+	this.bD=bD;
 	this.id=id;
+	this.tiempoLectura=tiempoLectura;
+	this.tiempoSleep=tiempoSleep;
 
 }
 
@@ -17,11 +20,11 @@ public void run(){
 
 	while (true){
 		try {
-			gestor.openL(id);
+			bD.openL(id);
 			//leyendo BD
-			Thread.sleep(r.nextInt(200));
-			gestor.closeL(id);
-			Thread.sleep(r.nextInt(300));
+			Thread.sleep(tiempoLectura);
+			bD.closeL(id);
+			Thread.sleep(tiempoSleep);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
