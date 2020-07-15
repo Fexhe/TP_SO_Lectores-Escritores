@@ -32,19 +32,10 @@ public class Principal {
 		System.out.println("Ingresar tiempo de escritura");
 	    int tiempoEscritura = scan.nextInt();  // Read user input
 	    System.out.println("tiempo de Escritura = " + tiempoEscritura);  // Output user input	   
-		
-	    System.out.println("Ingresar tiempo de espera luego de finalizacion de escritura");
-	    int tiempoSleepEsc = scan.nextInt();  // Read user input
-	    System.out.println("Tiempo de espera luego de finalizacion de escritura = " + tiempoSleepEsc);  // Output user input	   
-		
-	    System.out.println("Ingresar tiempo de espera luego de finalizacion de lectura");
-	    int tiempoSleepLec = scan.nextInt();  // Read user input
-	    System.out.println("Tiempo de espera luego de finalizacion de lectura = " + tiempoSleepLec);  // Output user input	   
-	    
+			    
 	    System.out.println("Ingresar el intervalo de tiempo de inicializacion que van a tener los hilos");
 	    int intervaloInicio = scan.nextInt();  // Read user input
 	    System.out.println("Intervalo de inicializacion de hilos = " + intervaloInicio);  // Output user input	  
-	    
 	    
 	    
 		BasedeDatos bD=new BasedeDatos(cantLectores, tiempoEscritura, tiempoLectura);
@@ -67,9 +58,11 @@ public class Principal {
 		
 		
 		// TODO Implementar iniciodeHilos con arreglo
-		
+		// inicio=0
 		for (int i=0; i<escritor.length; i++) {
 			escritor[i].start();
+			//delay(inicio + rnd)
+			//inicio=rnd
 		}
 		
 		for (int i=0; i<lector.length; i++) {

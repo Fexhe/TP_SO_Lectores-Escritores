@@ -16,15 +16,15 @@ public class BasedeDatos {
 
 	public BasedeDatos(int cantLectores, int tiempoLectura, int tiempoEscritura) {
 		// TODO pasarle la cantidad de lectores al constructor
-		new Semaphore(cantLectores);
+		nLectores = new Semaphore(cantLectores);
 		this.tiempoLectura=tiempoLectura;
 		this.tiempoEscritura=tiempoEscritura;
 		
 				
 	}
 	
+	// TODO Generar logica/condiciones para que no se lea mientras se escribe
 	public void leer(int id){
-		
 		try {
 			nLectores.acquire();
 			System.out.println("Lector"+id+" dato= "+dato);
@@ -43,8 +43,8 @@ public class BasedeDatos {
 		
 		try {
 			nEscritores.acquire();
-			System.out.println("Lector"+id+" dato= "+dato);
 			dato = escritura;
+			System.out.println("Escritor: "+id+" dato= "+dato);
 			Thread.sleep(tiempoLectura);
 			nEscritores.release();
 		
@@ -53,7 +53,8 @@ public class BasedeDatos {
 		}
 		
 
-		private static void burbuja(int[] arreglo) {
+		/*
+		   private static void burbuja(int[] arreglo) {
 			for (int x = 0; x < arreglo.length; x++) {
 			// Aquí "y" se detiene antes de llegar
 			// a length - 1 porque dentro del for, accedemos
@@ -69,6 +70,6 @@ public class BasedeDatos {
 				}
 			}
 		}
-
+	*/
 	}
 }

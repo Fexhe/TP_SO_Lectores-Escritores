@@ -20,21 +20,21 @@ public class Escritor extends Thread {
 	}
 
 
-public void run() {
-
-	while (true){
-		try {
-			escritura=rnd.nextInt(1000);
-			bD.escribir(id, escritura);
-			//escribiendo en BD
-			Thread.sleep(tiempoSleep);
-		} catch (InterruptedException e) {
-			
-			e.printStackTrace();
-		} 
+	public void run() {
+	
+		while (true){
+			try {
+				escritura=rnd.nextInt(1000);
+				bD.escribir(id, escritura);
+				//escribiendo en BD
+				Thread.sleep(tiempoSleep);
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			} 
+		}
+	
+		
+		
 	}
-
-	
-	
-}
 }
