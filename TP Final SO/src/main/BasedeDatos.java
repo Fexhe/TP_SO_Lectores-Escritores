@@ -7,7 +7,6 @@ import java.util.concurrent.Semaphore;
 public class BasedeDatos {
 
 	private int dato=0;
-	Random rnd = new Random();
 	public int tiempoLectura;
 	public int tiempoEscritura;
 	private Semaphore nLectores;
@@ -40,12 +39,12 @@ public class BasedeDatos {
 
 	}
 	
-	public void escribir(int id){
+	public void escribir(int id, int escritura){
 		
 		try {
 			nEscritores.acquire();
 			System.out.println("Lector"+id+" dato= "+dato);
-			dato = rnd.nextInt(1000);
+			dato = escritura;
 			Thread.sleep(tiempoLectura);
 			nEscritores.release();
 		

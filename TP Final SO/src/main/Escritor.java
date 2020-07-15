@@ -3,10 +3,13 @@ package main;
 import java.util.*;
 public class Escritor extends Thread {
 
+	private int id;
 	private BasedeDatos bD;
 	private int tiempoEscritura;
 	private int tiempoSleep; 
-	private int id;
+	Random rnd = new Random();
+	private int escritura;
+
 
 	public Escritor(BasedeDatos bD, int id, int tiempoEscritura, int tiempoSleep){
 		this.bD=bD;
@@ -21,7 +24,8 @@ public void run() {
 
 	while (true){
 		try {
-			bD.escribir(id);
+			escritura=rnd.nextInt(1000);
+			bD.escribir(id, escritura);
 			//escribiendo en BD
 			Thread.sleep(tiempoSleep);
 		} catch (InterruptedException e) {
