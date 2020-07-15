@@ -1,31 +1,59 @@
 package main;
 
 import java.util.Queue;
+import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 public class BasedeDatos {
 
 	private int dato=0;
-	private int nLectores=0;
-	private int nEscritor=0;
-	private Queue colaLectores;
-	private Queue colaEscritores;
+	Random rnd = new Random();
+	public int tiempoLectura;
+	public int tiempoEscritura;
+	private Semaphore nLectores;
+	private Semaphore nEscritores= new Semaphore(1);
 	
 	private boolean hayEscritor=false;
 
-	
-	public void openL(int id) throws InterruptedException{
-		while(hayEscritor || nEscritor>0){
-			wait();
-		}
-		nLectores++;
-		System.out.println("Lector"+id+"entra en la BD");
+	public BasedeDatos(int cantLectores, int tiempoLectura, int tiempoEscritura) {
+		// TODO pasarle la cantidad de lectores al constructor
+		new Semaphore(cantLectores);
+		this.tiempoLectura=tiempoLectura;
+		this.tiempoEscritura=tiempoEscritura;
+		
+				
 	}
 	
-	public void closeL(int id){
-		System.out.println("Lector"+id + "sale de la BD");
-		nLectores--;
-		if (nLectores==0) notifyAll();
+	public void leer(int id){
 		
+		try {
+			nLectores.acquire();
+			System.out.println("Lector"+id+" dato= "+dato);
+			Thread.sleep(tiempoLectura);
+			
+			nLectores.release();
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+
+	}
+	
+	public void escribir(int id){
+		
+		try {
+			nEscritores.acquire();
+			System.out.println("Lector"+id+" dato= "+dato);
+			dato = rnd.nextInt(1000);
+			Thread.sleep(tiempoLectura);
+			nEscritores.release();
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+
 
 	}
 }

@@ -14,8 +14,6 @@ public class Principal {
 	public static int id=0;
 	
 	public static void main(String[] args) {
-	
-		BaseDatos bD=new BaseDatos();
 		
 		Scanner scan = new Scanner(System.in);  // Create a Scanner object
 	    
@@ -47,8 +45,13 @@ public class Principal {
 	    int intervaloInicio = scan.nextInt();  // Read user input
 	    System.out.println("Intervalo de inicializacion de hilos = " + intervaloInicio);  // Output user input	  
 	    
+	    
+	    
+		BasedeDatos bD=new BasedeDatos(cantLectores, tiempoEscritura, tiempoLectura);
 		Escritor[] escritor=new Escritor[cantEscritores];
 		Lector[] lector=new Lector[cantLectores];
+		
+		
 		
 		// TODO implementar tiempos de inicio
 
