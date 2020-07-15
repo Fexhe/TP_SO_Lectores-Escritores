@@ -24,7 +24,6 @@ public void run(){
 			Thread.sleep(tiempoSleep);
 			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	}
