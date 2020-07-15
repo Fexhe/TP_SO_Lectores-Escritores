@@ -38,7 +38,7 @@ public class Principal {
 	    System.out.println("Intervalo de inicializacion de hilos = " + intervaloInicio);  // Output user input	  
 	    
 	    
-		BasedeDatos bD=new BasedeDatos(cantLectores, tiempoEscritura, tiempoLectura);
+		BasedeDatos bD=new BasedeDatos(tiempoEscritura, tiempoLectura);
 		Escritor[] escritor=new Escritor[cantEscritores];
 		Lector[] lector=new Lector[cantLectores];
 		

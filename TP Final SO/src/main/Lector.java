@@ -21,6 +21,7 @@ public void run(){
 	while (true){
 		try {
 			bD.leer(id);
+			//escribiendo en BD
 			Thread.sleep(tiempoSleep);
 			
 		} catch (InterruptedException e) {

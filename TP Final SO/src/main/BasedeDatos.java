@@ -9,28 +9,35 @@ public class BasedeDatos {
 	private int dato=0;
 	public int tiempoLectura;
 	public int tiempoEscritura;
-	private Semaphore nLectores;
-	private Semaphore nEscritores= new Semaphore(1);
-	
-	private boolean hayEscritor=false;
+	public int contLectores=0;
+	private Semaphore mutex= new Semaphore(1);
+	private Semaphore semEscritura= new Semaphore(1);
 
-	public BasedeDatos(int cantLectores, int tiempoLectura, int tiempoEscritura) {
-		// TODO pasarle la cantidad de lectores al constructor
-		nLectores = new Semaphore(cantLectores);
+	
+	public BasedeDatos(int tiempoLectura, int tiempoEscritura) {
 		this.tiempoLectura=tiempoLectura;
-		this.tiempoEscritura=tiempoEscritura;
-		
-				
+		this.tiempoEscritura=tiempoEscritura;			
 	}
 	
-	// TODO Generar logica/condiciones para que no se lea mientras se escribe
+
 	public void leer(int id){
 		try {
-			nLectores.acquire();
-			System.out.println("Lector"+id+" dato= "+dato);
-			Thread.sleep(tiempoLectura);
-			
-			nLectores.release();
+			mutex.acquire();	//wait
+			contLectores++;
+			if(contLectores == 1) {
+				semEscritura.acquire();	//wait
+				mutex.release();	//signal
+				
+					System.out.println("Lector"+id+" dato= "+dato);
+					Thread.sleep(tiempoLectura);
+				
+				mutex.acquire();	//wait
+				contLectores--;
+			}
+			if(contLectores == 0) {
+				semEscritura.release();	//signal
+				mutex.release();	//signal
+			}
 
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -42,11 +49,13 @@ public class BasedeDatos {
 	public void escribir(int id, int escritura){
 		
 		try {
-			nEscritores.acquire();
-			dato = escritura;
-			System.out.println("Escritor: "+id+" dato= "+dato);
-			Thread.sleep(tiempoLectura);
-			nEscritores.release();
+			semEscritura.acquire();	//wait
+				
+				dato = escritura;
+				System.out.println("Escritor: "+id+" dato= "+dato);
+				Thread.sleep(tiempoEscritura);
+			
+			semEscritura.release();	//signal
 		
 		} catch (InterruptedException e) {
 			e.printStackTrace();
