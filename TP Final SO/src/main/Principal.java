@@ -25,6 +25,14 @@ public class Principal {
 	
 	public static void main(String[] args) {
 		
+		cantEscritores=3;
+		cantLectores=20;
+		tiempoLectura=400;
+		tiempoEscritura=400;
+		tiempoSleepEsc=2000;
+		tiempoSleepLec=1000;
+		
+		/*
 		Scanner scan = new Scanner(System.in);  // Create a Scanner object
 	    
 		System.out.println("Ingresar cantidad de Lectores");
@@ -47,7 +55,7 @@ public class Principal {
 			    
 	    System.out.println("Ingresar el intervalo de tiempo de inicializacion que van a tener los hilos");
 	    int intervaloInicio = scan.nextInt();  // Read user input  
-	    
+	    */
 	    
 		//BasedeDatos bD=new BasedeDatos(tiempoEscritura, tiempoLectura);
 		Escritor[] escritor=new Escritor[cantEscritores];
@@ -81,8 +89,6 @@ public class Principal {
 		for (int i=0; i<lector.length; i++) {
 			lector[i].start();
 		}
-		
-
 
 	}
 

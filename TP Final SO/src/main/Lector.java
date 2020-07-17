@@ -20,6 +20,7 @@ public class Lector extends Thread {
 	
 		while (true){
 			try {
+				// enviar datos del hilo a la tabla
 				Principal.mutex.acquire();	//wait (p)
 				Principal.contLectores++;
 				if (Principal.contLectores == 1) {
@@ -32,9 +33,9 @@ public class Lector extends Thread {
 				Principal.mutex.acquire();	//wait (p)
 				Principal.contLectores--;
 				if(Principal.contLectores == 0) {
-					Principal.mutex.release();	//signal (v)
+					Principal.wrt.release();	//signal (v)
 				}
-				Principal.wrt.release();	//signal (v)
+				Principal.mutex.release();	//signal (v)
 				Thread.sleep(tiempoSleep);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
