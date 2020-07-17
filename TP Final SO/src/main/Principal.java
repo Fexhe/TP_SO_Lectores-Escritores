@@ -12,6 +12,8 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+// TODO Faltan hacer Colas (Chequear si se puede con las de los semaforos), Agregar tiempo en la tabla, Terminar documentacion
+
 public class Principal {
 	public static int nEscritores=0;
 	public static int nLectores=0;
@@ -25,11 +27,11 @@ public class Principal {
 	public static int baseDatos;
 	public static int cantEscritores;
 	public static int cantLectores;
-	public static int tiempoLectura;
-	public static int tiempoEscritura;
-	public static int tiempoSleepEsc;
-	public static int tiempoSleepLec;
-	public static int intervaloInicio;
+	public static int tiempoLectura;  //Tiempo minimo de 600
+	public static int tiempoEscritura;  //Tiempo minimo de 600
+	public static int tiempoSleepEsc;  //Tiempo minimo de 2000
+	public static int tiempoSleepLec;  //Tiempo minimo de 2000
+	public static int intervaloInicio; 
 	public static int id=0;
 	
 	public static void main(String[] args) {
