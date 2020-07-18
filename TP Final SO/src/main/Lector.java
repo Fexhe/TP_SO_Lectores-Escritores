@@ -17,9 +17,7 @@ public class Lector extends Thread {
 	private Fecha fecha=new Fecha();
 	long time;
 
-	//public Lector(BasedeDatos bD, int id, int timepoLectura){
 	public Lector(int id, int tiempoLectura, int tiempoSleepLec, JFrame tablaEstado, JFrame colaLectores, Semaphore mutex, Semaphore wrt){
-		//this.bD=bD;
 		this.tiempoSleep=tiempoSleepLec;
 		this.id=id;
 		this.tiempoLectura=tiempoLectura;
@@ -32,7 +30,7 @@ public class Lector extends Thread {
 	}
 	
 	public void run(){
-	
+		
 		while (true){
 			try {
 				//colaLectores.modelo.addRow(new Object[]{"Lector id: "+id});  // Simulacion de la cola de Lectores

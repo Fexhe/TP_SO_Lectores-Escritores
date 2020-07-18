@@ -20,12 +20,10 @@ public class MarcoColaEscritores extends JFrame{
 			
 			setBounds(300,400,300,200);
 			
-			//DefaultTableModel modelo = new DefaultTableModel(0,5);
 			JTable tablaOperadores=new JTable(modelo);
 			
 			Object[] newIdentifiers={"Escritoes"} ;
 			modelo.setColumnIdentifiers(newIdentifiers);
-			
 			
 			add(new JScrollPane(tablaOperadores), BorderLayout.CENTER);
 			

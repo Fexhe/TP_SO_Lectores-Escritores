@@ -13,8 +13,6 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-// TODO Faltan hacer Colas (Chequear si se puede con las de los semaforos), Agregar tiempo en la tabla, Terminar documentacion
-
 public class Principal {
 	public static int nEscritores=0;
 	public static int nLectores=0;
@@ -70,7 +68,6 @@ public class Principal {
 	    int intervaloInicio = scan.nextInt();  // Read user input  
 	    */
 	    
-		//BasedeDatos bD=new BasedeDatos(tiempoEscritura, tiempoLectura);
 		Escritor[] escritor=new Escritor[cantEscritores];
 		Lector[] lector=new Lector[cantLectores];
 		
@@ -101,7 +98,6 @@ public class Principal {
 			try {
 				Thread.sleep(intervaloInicio);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -111,7 +107,6 @@ public class Principal {
 			try {
 				Thread.sleep(intervaloInicio);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

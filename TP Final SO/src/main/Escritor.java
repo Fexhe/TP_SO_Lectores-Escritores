@@ -21,10 +21,8 @@ public class Escritor extends Thread {
 	private Fecha fecha=new Fecha();
 	long time;
 
-
-	//public Escritor(BasedeDatos bD, int id, int tiempoEscritura){
+	
 	public Escritor(int id, int tiempoEscritura, int tiempoSleepEsc, JFrame tablaEstado, JFrame colaEscritores, Semaphore mutex, Semaphore wrt){
-		//this.bD=bD;
 		this.tiempoSleep=tiempoSleepEsc;
 		this.id=id;
 		this.tiempoEscritura=tiempoEscritura;
@@ -39,7 +37,6 @@ public class Escritor extends Thread {
 	public void run() {
 	
 		while (true){
-			
 			try {
 				//colaEscritores.modelo.addRow(new Object[]{"Escritor id: "+id});  // Simulacion de la cola de Escritores
 				System.out.println("Escritor: "+id+" Iniciando Escritura "+" dato= "+Principal.baseDatos + " Tiempo: "+fecha.mostrarFecha());

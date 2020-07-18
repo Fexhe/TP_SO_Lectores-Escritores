@@ -8,7 +8,6 @@ public class Fecha extends Calendar{
 		private String fechaString;
 		
 		
-		
 		public String mostrarFecha() {
 			fecha= Calendar.getInstance();
 			int hora= fecha.get(Fecha.HOUR);

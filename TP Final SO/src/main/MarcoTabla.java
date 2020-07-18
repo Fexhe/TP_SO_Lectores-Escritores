@@ -19,13 +19,11 @@ public class MarcoTabla extends JFrame{
 			setTitle("Threads");
 			
 			setBounds(300,400,300,200);
-			
-			//DefaultTableModel modelo = new DefaultTableModel(0,5);
+
 			JTable tablaOperadores=new JTable(modelo);
 			
 			Object[] newIdentifiers={"id", "Tipo de Thread", "Estado", "Tiempo"} ;
 			modelo.setColumnIdentifiers(newIdentifiers);
-			
 			
 			add(new JScrollPane(tablaOperadores), BorderLayout.CENTER);
 			
