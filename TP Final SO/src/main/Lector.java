@@ -44,7 +44,7 @@ public class Lector extends Thread {
 				mutex.release();	//signal (v)
 				//Leyendo Base de Datos
 				//tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Inicio Lectura", fecha.mostrarFecha()});
-				System.out.println("Lector"+id+" dato= "+Principal.baseDatos);
+				System.out.println("Lector: "+id+ " Iniciando Lectura " +" dato= "+Principal.baseDatos+ " Tiempo: "+fecha.mostrarFecha());
 				Thread.sleep(tiempoLectura);
 				mutex.acquire();	//wait (p)
 				Principal.contLectores--;
@@ -53,6 +53,7 @@ public class Lector extends Thread {
 				}
 				mutex.release();	//signal (v)
 				//tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Fin Lectura", fecha.mostrarFecha()});
+				System.out.println("Lector "+id+ " Finalizando Lectura " +" dato= "+Principal.baseDatos+ " Tiempo: "+fecha.mostrarFecha());
 				Thread.sleep(tiempoSleep);
 				
 			} catch (InterruptedException e) {

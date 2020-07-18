@@ -26,10 +26,10 @@ public class Principal {
 	public static int baseDatos;
 	public static int cantEscritores;
 	public static int cantLectores;
-	public static int tiempoLectura;  //Tiempo minimo de 600
-	public static int tiempoEscritura;  //Tiempo minimo de 600
-	public static int tiempoSleepEsc;  //Tiempo minimo de 2000
-	public static int tiempoSleepLec;  //Tiempo minimo de 2000
+	public static int tiempoLectura;  
+	public static int tiempoEscritura;  
+	public static int tiempoSleepEsc;  
+	public static int tiempoSleepLec;  
 	public static int intervaloInicio; 
 	public static int id=0;
 
