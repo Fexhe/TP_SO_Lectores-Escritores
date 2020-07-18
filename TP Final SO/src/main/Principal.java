@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Collection;
 import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 import javax.swing.JFrame;
@@ -21,9 +22,7 @@ public class Principal {
 	public static int contLectores=0;
 	public static Semaphore mutex= new Semaphore(1);
 	public static Semaphore wrt= new Semaphore(1);
-	public static Semaphore colaEscritores= new Semaphore(0);
-	public static Semaphore colaLectores= new Semaphore(0);
-	
+
 	public static int baseDatos;
 	public static int cantEscritores;
 	public static int cantLectores;
@@ -33,7 +32,7 @@ public class Principal {
 	public static int tiempoSleepLec;  //Tiempo minimo de 2000
 	public static int intervaloInicio; 
 	public static int id=0;
-	
+
 	public static void main(String[] args) {
 		
 		cantEscritores=2;
@@ -72,29 +71,27 @@ public class Principal {
 		Escritor[] escritor=new Escritor[cantEscritores];
 		Lector[] lector=new Lector[cantLectores];
 		
-		JFrame mimarco=new MarcoTabla();
-		
-		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JFrame tablaEstado=new MarcoTabla();
+		JFrame colaLectores=new MarcoColaLectores();
+		JFrame colaEscritores=new MarcoColaEscritores();
+		tablaEstado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		mimarco.setVisible(true);
+		tablaEstado.setVisible(true);
+		colaLectores.setVisible(true);
+		colaEscritores.setVisible(true);
 		
-		
-		// TODO implementar tiempos de inicio
 
 		for (int i=0; i<escritor.length; i++) {
 			id++;
-			//escritor[i]= new Escritor(bD, id, tiempoEscritura);
-			escritor[i]= new Escritor(id, tiempoEscritura, tiempoSleepEsc, mimarco);
+			escritor[i]= new Escritor(id, tiempoEscritura, tiempoSleepEsc, tablaEstado, colaEscritores, mutex, wrt);
 		}
 		
 		for (int i=0; i<lector.length; i++) {
 			id++;
-			lector[i]= new Lector(id, tiempoLectura, tiempoSleepLec, mimarco);
+			lector[i]= new Lector(id, tiempoLectura, tiempoSleepLec, tablaEstado, colaLectores, mutex, wrt);
 		}
 		
 		
-		// TODO Implementar iniciodeHilos con arreglo
-		// inicio=0
 		
 		for (int i=0; i<escritor.length; i++) {
 			escritor[i].start();
@@ -115,7 +112,6 @@ public class Principal {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 }
