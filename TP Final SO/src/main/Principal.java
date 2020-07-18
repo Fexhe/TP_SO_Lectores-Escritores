@@ -42,7 +42,10 @@ public class Principal {
 		tiempoSleepEsc=3000;
 		tiempoSleepLec=6000;
 		intervaloInicio=2000;
-		/*
+		
+		/* 
+		 * Se pueden ingresar los parametros iniciales por Consola
+		 * 
 		Scanner scan = new Scanner(System.in);  // Create a Scanner object
 	    
 		System.out.println("Ingresar cantidad de Lectores");
