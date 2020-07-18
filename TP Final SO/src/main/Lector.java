@@ -14,6 +14,7 @@ public class Lector extends Thread {
 	private MarcoColaLectores colaLectores;
 	private Semaphore mutex;
 	private Semaphore wrt;
+	private Fecha fecha=new Fecha();
 	long time;
 
 	//public Lector(BasedeDatos bD, int id, int timepoLectura){
@@ -34,7 +35,7 @@ public class Lector extends Thread {
 	
 		while (true){
 			try {
-				
+				//colaLectores.modelo.addRow(new Object[]{"Lector id: "+id});
 				mutex.acquire();	//wait (p)
 				Principal.contLectores++;
 				if (Principal.contLectores == 1) {
@@ -42,7 +43,7 @@ public class Lector extends Thread {
 				}
 				mutex.release();	//signal (v)
 				//Leyendo Base de Datos
-				tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Inicio Lectura", time=System.nanoTime()});
+				//tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Inicio Lectura", fecha.mostrarFecha()});
 				System.out.println("Lector"+id+" dato= "+Principal.baseDatos);
 				Thread.sleep(tiempoLectura);
 				mutex.acquire();	//wait (p)
@@ -51,8 +52,9 @@ public class Lector extends Thread {
 					Principal.wrt.release();	//signal (v)
 				}
 				mutex.release();	//signal (v)
-				tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Fin Lectura", time=System.nanoTime()});
+				//tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Fin Lectura", fecha.mostrarFecha()});
 				Thread.sleep(tiempoSleep);
+				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

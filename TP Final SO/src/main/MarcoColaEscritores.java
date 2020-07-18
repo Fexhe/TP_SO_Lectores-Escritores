@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class MarcoColaEscritores extends JFrame{
 
-		public DefaultTableModel modelo = new DefaultTableModel(1,1);
+		public DefaultTableModel modelo = new DefaultTableModel(0,1);
 	
 		public MarcoColaEscritores() {
 			setTitle("Cola Escritores");

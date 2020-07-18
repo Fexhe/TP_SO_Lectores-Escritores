@@ -5,6 +5,7 @@ import java.util.concurrent.Semaphore;
 
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import java.util.Calendar;
 
 public class Escritor extends Thread {
 
@@ -17,6 +18,7 @@ public class Escritor extends Thread {
 	private MarcoColaEscritores colaEscritores;
 	private Semaphore mutex;
 	private Semaphore wrt;
+	private Fecha fecha=new Fecha();
 	long time;
 
 
@@ -39,16 +41,16 @@ public class Escritor extends Thread {
 		while (true){
 			
 			try {
-				
+				//colaEscritores.modelo.addRow(new Object[]{"Escritor id: "+id});
 				wrt.acquire();	//wait (p)
-				tablaEstado.modelo.addRow(new Object[]{id, "Escritor", "Inicio Escritura", time=System.nanoTime()});
-					//Escribiendo en la base de datos
-					Principal.baseDatos=rnd.nextInt(1000);
+					//tablaEstado.modelo.addRow(new Object[]{id, "Escritor", "Inicio Escritura", fecha.mostrarFecha()});
+					Principal.baseDatos=rnd.nextInt(1000);		 //Escribiendo en la base de datos
 					Thread.sleep(tiempoEscritura);
 					System.out.println("Escritor: "+id+" dato= "+Principal.baseDatos);
 				wrt.release();	//signal (v)
-				tablaEstado.modelo.addRow(new Object[]{id, "Escritor", "Fin Escritura", time=System.nanoTime()});
+				//tablaEstado.modelo.addRow(new Object[]{id, "Escritor", "Fin Escritura", fecha.mostrarFecha()});
 				Thread.sleep(tiempoSleep);
+				//colaEscritores.modelo.removeRow(colaEscritores.modelo.getRowCount() - 1);
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();

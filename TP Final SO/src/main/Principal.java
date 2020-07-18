@@ -38,10 +38,10 @@ public class Principal {
 		cantEscritores=2;
 		cantLectores=10;
 		tiempoLectura=500;
-		tiempoEscritura=600;
-		tiempoSleepEsc=2000;
-		tiempoSleepLec=1000;
-		intervaloInicio=5000;
+		tiempoEscritura=1000;
+		tiempoSleepEsc=3000;
+		tiempoSleepLec=6000;
+		intervaloInicio=2000;
 		/*
 		Scanner scan = new Scanner(System.in);  // Create a Scanner object
 	    
