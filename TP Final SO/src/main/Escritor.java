@@ -41,7 +41,7 @@ public class Escritor extends Thread {
 		while (true){
 			
 			try {
-				//colaEscritores.modelo.addRow(new Object[]{"Escritor id: "+id});
+				//colaEscritores.modelo.addRow(new Object[]{"Escritor id: "+id});  // Simulacion de la cola de Escritores
 				System.out.println("Escritor: "+id+" Iniciando Escritura "+" dato= "+Principal.baseDatos + " Tiempo: "+fecha.mostrarFecha());
 				wrt.acquire();	//wait (p)
 					//tablaEstado.modelo.addRow(new Object[]{id, "Escritor", "Inicio Escritura", fecha.mostrarFecha()});
@@ -51,7 +51,7 @@ public class Escritor extends Thread {
 				wrt.release();	//signal (v)
 				//tablaEstado.modelo.addRow(new Object[]{id, "Escritor", "Fin Escritura", fecha.mostrarFecha()});
 				Thread.sleep(tiempoSleep);
-				//colaEscritores.modelo.removeRow(colaEscritores.modelo.getRowCount() - 1);
+				//colaEscritores.modelo.removeRow(colaEscritores.modelo.getRowCount() - 1);  // Simulacion de la cola de Escritores
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();

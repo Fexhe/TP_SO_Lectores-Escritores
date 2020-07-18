@@ -35,7 +35,7 @@ public class Lector extends Thread {
 	
 		while (true){
 			try {
-				//colaLectores.modelo.addRow(new Object[]{"Lector id: "+id});
+				//colaLectores.modelo.addRow(new Object[]{"Lector id: "+id});  // Simulacion de la cola de Lectores
 				mutex.acquire();	//wait (p)
 				Principal.contLectores++;
 				if (Principal.contLectores == 1) {
@@ -53,6 +53,7 @@ public class Lector extends Thread {
 				}
 				mutex.release();	//signal (v)
 				//tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Fin Lectura", fecha.mostrarFecha()});
+				//colaLectores.modelo.removeRow(colaLectores.modelo.getRowCount() - 1);  // Simulacion de la cola de Lectores
 				System.out.println("Lector "+id+ " Finalizando Lectura " +" dato= "+Principal.baseDatos+ " Tiempo: "+fecha.mostrarFecha());
 				Thread.sleep(tiempoSleep);
 				
