@@ -35,24 +35,24 @@ public class Lector extends Thread {
 			try {
 				
 				mutex.acquire();	//wait (p)
-				colaLectores.modelo.addRow(new Object[]{"Lector id: "+id});  // Simulacion de la cola de Lectores
-				Principal.contLectores++;
-				if (Principal.contLectores == 1) {
-					Principal.wrt.acquire();	//wait (p)
-				}
-				tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Inicio Lectura", fecha.mostrarFecha()});
+					colaLectores.modelo.addRow(new Object[]{"Lector id: "+id});  // Simulacion de la cola de Lectores
+					Principal.contLectores++;
+					if (Principal.contLectores == 1) {
+						Principal.wrt.acquire();	//wait (p)
+					}
+					tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Inicio Lectura", fecha.mostrarFecha()});
 				mutex.release();	//signal (v)
 				//Leyendo Base de Datos
 				
 				System.out.println("Lector: "+id+ " Iniciando Lectura " +" dato= "+Principal.baseDatos+ " Tiempo: "+fecha.mostrarFecha());
 				Thread.sleep(tiempoLectura);
 				mutex.acquire();	//wait (p)
-				Principal.contLectores--;
-				if(Principal.contLectores == 0) {
-					Principal.wrt.release();	//signal (v)
-				}
-				tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Fin Lectura", fecha.mostrarFecha()});
-				colaLectores.modelo.removeRow(colaLectores.modelo.getRowCount() - 1);  // Simulacion de la cola de Lectores
+					Principal.contLectores--;
+					if(Principal.contLectores == 0) {
+						Principal.wrt.release();	//signal (v)
+					}
+					tablaEstado.modelo.addRow(new Object[]{id, "Lector", "Fin Lectura", fecha.mostrarFecha()});
+					colaLectores.modelo.removeRow(colaLectores.modelo.getRowCount() - 1);  // Simulacion de la cola de Lectores
 				mutex.release();	//signal (v)
 				
 				System.out.println("Lector "+id+ " Finalizando Lectura " +" dato= "+Principal.baseDatos+ " Tiempo: "+fecha.mostrarFecha());
