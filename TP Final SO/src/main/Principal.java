@@ -33,8 +33,8 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		cantEscritores=2;
-		cantLectores=10;
+		cantEscritores=4;
+		cantLectores=20;
 		tiempoLectura=500;
 		tiempoEscritura=1000;
 		tiempoSleepEsc=3000;
